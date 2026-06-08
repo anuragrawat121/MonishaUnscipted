@@ -1,0 +1,66 @@
+.loaderContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0a0a0a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loaderContent {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+}
+
+.progressRing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg); /* Starts at the top */
+  z-index: 2;
+}
+
+.progressRingCircle {
+  fill: transparent;
+  stroke: #ffffff;
+  stroke-width: 2; /* Thinner outer line */
+  stroke-dasharray: 144.5;
+  stroke-dashoffset: 144.5; 
+}
+
+.progressRingTrack {
+  fill: transparent;
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 2; /* Match the active ring */
+}
+
+.percentage {
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 500; /* slightly bolder for blend mode */
+  color: #ffffff;
+  letter-spacing: 1px;
+  z-index: 3;
+  mix-blend-mode: difference;
+}
+
+.expandingCircle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 50%;
+  z-index: 1;
+}

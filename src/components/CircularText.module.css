@@ -1,0 +1,23 @@
+.circularText {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.char {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform-origin: 0 150px; /* Half of the container width (300px/2) */
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}

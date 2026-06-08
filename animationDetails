@@ -1,0 +1,59 @@
+# UI/UX Animation Portfolio Analysis & Implementation Plan
+
+This document outlines the detailed analysis of the provided reference websites, breaking down their visual effects, typography, and motion design. It serves as our blueprint for selecting the right animation libraries and building a standout Next.js portfolio.
+
+## 1. Reference Website Analysis
+
+### 🥇 High Priority: Montoya Theme (Clapat)
+This theme represents the core vibe and primary animation style for our portfolio.
+
+*   **Smooth Scrolling:** The site uses inertia-based smooth scrolling, which makes the whole experience feel like a fluid native app rather than a clunky webpage.
+*   **Custom Magnetic Cursor:** The default mouse pointer is replaced with a custom dot/circle. When hovering over links, buttons, or images, the cursor morphs (expands, changes color, or displays text like "View Project") and magnetically snaps to elements.
+*   **Page Transitions:** Navigating between pages doesn't trigger a hard browser refresh. Instead, seamless transitions occur (e.g., a dark curtain sliding down, content fading out, and the next page's hero image expanding).
+*   **Text Motions (Typography):** 
+    *   Headings use a "reveal from mask" effect. The text is split into lines or characters that stagger upwards from behind an invisible baseline.
+    *   Typography mixes elegant, large serif fonts with clean sans-serif secondary text.
+*   **Image Motions & Hover Effects:** 
+    *   **Parallax:** Images move at a slightly different speed than the scroll bar, creating a 3D depth effect.
+    *   **WebGL Distortions:** Hovering over project thumbnails triggers liquid, ripple, or wave-like distortion effects on the images.
+*   **Fullscreen Menu:** The burger menu opens a fullscreen overlay with staggered animations for each navigation link.
+
+### 🥈 Low Priority: Brandon Johnson & Jake Sinclair
+We will cherry-pick only the most outstanding features from these two.
+
+*   **Jake Sinclair - Interactive Card Stacks:** A highly interactive project showcase where project cards fan out like a deck of cards or stack on top of each other dynamically on scroll.
+*   **Jake Sinclair - Thumbnail to Hero Expansion:** Clicking a project thumbnail smoothly scales that exact image up to become the hero header of the next page.
+*   **Brandon Johnson - Minimalist Precision:** Extremely clean layout with subtle, elegant fade-ups for secondary text. It focuses on stark contrast and bold, massive typography that sticks to the screen on scroll.
+
+---
+
+## 2. Recommended Tech Stack & Libraries
+
+To achieve these high-end, Awwwards-winning effects in a Next.js (Vanilla JS/CSS) environment, we need top-tier libraries:
+
+1.  **GSAP (GreenSock) & ScrollTrigger:** 
+    *   *Purpose:* The absolute gold standard for high-performance, complex timeline animations. We will use it for the staggered text reveals (SplitText/text masking), parallax image effects, and triggering animations as elements enter the screen.
+2.  **Lenis (by Studio Freight):** 
+    *   *Purpose:* A lightweight, highly performant smooth scrolling library built specifically for modern web and React/Next.js. It integrates perfectly with GSAP ScrollTrigger and is much smoother than Locomotive Scroll.
+3.  **Framer Motion:** 
+    *   *Purpose:* Ideal for handling Next.js Route/Page Transitions (via `<AnimatePresence>`) and simple declarative UI interactions (like the custom magnetic cursor).
+4.  **Three.js (or simple WebGL shaders):** 
+    *   *Purpose:* Needed strictly for the liquid/distortion hover effects on project images (Montoya style). 
+
+---
+
+## 3. Proposed Next Steps
+1.  **Foundation:** Setup the global layout, Lenis smooth scrolling, and custom cursor.
+2.  **Typography & Styles:** Define the Vanilla CSS design system (fonts, colors, responsive grid).
+3.  **Hero Section:** Build the landing area with staggered text reveals.
+4.  **Projects Showcase:** Implement the parallax image scroll and WebGL hover effects.
+5.  **Page Transitions:** Wrap the App Router in Framer Motion to enable seamless navigation.
+
+> [!IMPORTANT]
+> **User Review Required**
+> Please review the analysis above. If this captures the exact vibe you are looking for, approve this plan so we can start building!
+
+> [!NOTE]
+> **Open Questions**
+> 1. Do you want the liquid/distortion image hover effects? (This requires Three.js and adds a bit of complexity, but looks incredible).
+> 2. Should we incorporate Jake Sinclair's "fanned out card stack" for the projects, or stick closer to Montoya's standard grid/list with parallax?
