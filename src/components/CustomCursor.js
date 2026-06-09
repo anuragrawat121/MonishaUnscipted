@@ -6,10 +6,16 @@ import styles from './CustomCursor.module.css';
 export default function CustomCursor() {
   const circleRef = useRef(null);
   const dotRef = useRef(null);
+  const labelRef = useRef(null);
 
   useEffect(() => {
+    if (window.matchMedia("(pointer: coarse)").matches) {
+      return undefined;
+    }
+
     // Hide cursors initially until first mouse move
     gsap.set([circleRef.current, dotRef.current], { opacity: 0 });
+    gsap.set(labelRef.current, { opacity: 0, scale: 0.86 });
 
     const mouse = { x: 0, y: 0 };
     const lastMouse = { x: 0, y: 0 };
@@ -51,6 +57,37 @@ export default function CustomCursor() {
       // Update dot position instantly
       dotXSet(e.clientX);
       dotYSet(e.clientY);
+    };
+
+    const handlePointerOver = (e) => {
+      const target = e.target.closest("a, button, [data-cursor]");
+      if (!target) {
+        return;
+      }
+
+      const label = target.getAttribute("data-cursor");
+      if (labelRef.current && label) {
+        labelRef.current.textContent = label;
+        gsap.to(labelRef.current, { opacity: 1, scale: 1, duration: 0.22, ease: "power2.out" });
+      }
+
+      gsap.to(state, { baseScale: 1.75, duration: 0.28, ease: "power2.out" });
+      gsap.to(dotState, { baseScale: 0.55, duration: 0.28, ease: "power2.out" });
+    };
+
+    const handlePointerOut = (e) => {
+      const target = e.target.closest("a, button, [data-cursor]");
+      if (!target) {
+        return;
+      }
+
+      if (e.relatedTarget && target.contains(e.relatedTarget)) {
+        return;
+      }
+
+      gsap.to(labelRef.current, { opacity: 0, scale: 0.86, duration: 0.16, ease: "power2.out" });
+      gsap.to(state, { baseScale: 1, duration: 0.28, ease: "power2.out" });
+      gsap.to(dotState, { baseScale: 1, duration: 0.28, ease: "power2.out" });
     };
 
     const handleMouseDown = () => {
@@ -114,19 +151,25 @@ export default function CustomCursor() {
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mouseup", handleMouseUp);
+    document.addEventListener("mouseover", handlePointerOver);
+    document.addEventListener("mouseout", handlePointerOut);
     
     return () => {
       gsap.ticker.remove(loop);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener("mouseover", handlePointerOver);
+      document.removeEventListener("mouseout", handlePointerOut);
     };
   }, []);
 
   return (
     <>
       <div className={styles.dot} ref={dotRef}></div>
-      <div className={styles.circle} ref={circleRef}></div>
+      <div className={styles.circle} ref={circleRef}>
+        <span className={styles.label} ref={labelRef}></span>
+      </div>
     </>
   );
 }

@@ -1,13 +1,6 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #080808;
+  --foreground: #f5efe6;
 }
 
 html {
@@ -35,7 +28,6 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  cursor: none !important;
 }
 
 a {
@@ -47,4 +39,15 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
+::selection {
+  color: #111;
+  background: #c8ff5f;
 }
