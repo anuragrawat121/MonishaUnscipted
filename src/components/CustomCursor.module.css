@@ -42,7 +42,7 @@
   white-space: nowrap;
 }
 
-@media (pointer: coarse) {
+@media (pointer: coarse), (hover: none) {
   .circle,
   .dot {
     display: none;

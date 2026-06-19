@@ -4,7 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #0a0a0a;
+  background-color: #0c0c0c;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,7 +40,7 @@
 
 .progressRingTrack {
   fill: transparent;
-  stroke: rgba(255, 255, 255, 0.1);
+  stroke: rgba(255, 255, 255, 0.26);
   stroke-width: 2; /* Match the active ring */
 }
 
